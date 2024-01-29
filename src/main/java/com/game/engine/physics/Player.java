@@ -120,7 +120,6 @@ public class Player extends Entity{
 						canAttack = true;
 					} else {
 						cooldownLeft -= 1;
-						System.out.println(cooldownLeft);
 						startTimer();
 					}
 				}
