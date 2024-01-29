@@ -1,14 +1,3 @@
-/* ========================================================== */
-/*                  Bibliotheque MoteurDeJeu                  */
-/* --------------------------------------------               */
-/* Bibliotheque pour aider la création de jeu video comme :   */
-/* - Jeux de role                                             */
-/* - Jeux de plateforme                                       */
-/* - Jeux de combat                                           */
-/* - Jeux de course                                           */
-/* - Ancien jeu d'arcade (Pac-Man, Space Invider, Snake, ...) */
-/* ========================================================== */
-
 package engine.controller;
 
 import java.awt.event.KeyEvent;
@@ -25,20 +14,15 @@ public class KeyboardController implements KeyListener {
 	 */
 	public static boolean fin = false;
 
-	// afficheur
-	boolean affiche = false;
-
 	/** the player can move or not */
 	public static boolean canMove = true;
-
-	// la variable de controle
 
 	/**
 	 * The controller
 	 */
 	public Control c;
 
-	/** opens the map*/
+	/** Opens the map*/
 	public static boolean map = false;
 
 	/** Shows the next dialog */
@@ -59,11 +43,9 @@ public class KeyboardController implements KeyListener {
 
 	/**
 	 * keyboard controller
-	 * @param affiche
 	 */
-	public KeyboardController(boolean affiche) {
+	public KeyboardController() {
 		c = new Control();
-		this.affiche = affiche;
 	}
 	
 	
@@ -76,19 +58,19 @@ public class KeyboardController implements KeyListener {
 		if(canMove){
 			// left key
 			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-				c.gauche = true;
+				c.left = true;
 			}
 			// right key
 			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-				c.droite = true;
+				c.right = true;
 			}
 			// up key
 			if (e.getKeyCode() == KeyEvent.VK_UP) {
-				c.haut = true;
+				c.up = true;
 			}
 			// down key
 			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-				c.bas = true;
+				c.down = true;
 			}
 			// Q key
 			if (e.getKeyCode() == KeyEvent.VK_Q) {
@@ -110,19 +92,19 @@ public class KeyboardController implements KeyListener {
 	public void keyReleased(KeyEvent e) {
 		// left key
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			c.gauche = false;
+			c.left = false;
 		}
 		// right key
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			c.droite = false;
+			c.right = false;
 		}
 		// up key
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			c.haut = false;
+			c.up = false;
 		}
 		// down key
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			c.bas = false;
+			c.down = false;
 		}
 		// M key
 		if (e.getKeyCode() == KeyEvent.VK_M) {

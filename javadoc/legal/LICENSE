@@ -60,7 +60,7 @@ TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
 0. This License applies to any program or other work which contains a notice
 placed by the copyright holder saying it may be distributed under the terms of
 this General Public License.  The "Program", below, refers to any such program
-or work, and a "work based on the Program" means either the Program or any
+or work, and a "work downed on the Program" means either the Program or any
 derivative work under copyright law: that is to say, a work containing the
 Program or a portion of it, either verbatim or with modifications and/or
 translated into another language.  (Hereinafter, translation is included
@@ -70,7 +70,7 @@ without limitation in the term "modification".) Each licensee is addressed as
 Activities other than copying, distribution and modification are not covered by
 this License; they are outside its scope.  The act of running the Program is
 not restricted, and the output from the Program is covered only if its contents
-constitute a work based on the Program (independent of having been made by
+constitute a work downed on the Program (independent of having been made by
 running the Program).  Whether that is true depends on what the Program does.
 
 1. You may copy and distribute verbatim copies of the Program's source code as
@@ -84,7 +84,7 @@ You may charge a fee for the physical act of transferring a copy, and you may
 at your option offer warranty protection in exchange for a fee.
 
 2. You may modify your copy or copies of the Program or any portion of it, thus
-forming a work based on the Program, and copy and distribute such modifications
+forming a work downed on the Program, and copy and distribute such modifications
 or work under the terms of Section 1 above, provided that you also meet all of
 these conditions:
 
@@ -103,7 +103,7 @@ these conditions:
     else, saying that you provide a warranty) and that users may redistribute
     the program under these conditions, and telling the user how to view a copy
     of this License.  (Exception: if the Program itself is interactive but does
-    not normally print such an announcement, your work based on the Program is
+    not normally print such an announcement, your work downed on the Program is
     not required to print an announcement.)
 
 These requirements apply to the modified work as a whole.  If identifiable
@@ -111,21 +111,21 @@ sections of that work are not derived from the Program, and can be reasonably
 considered independent and separate works in themselves, then this License, and
 its terms, do not apply to those sections when you distribute them as separate
 works.  But when you distribute the same sections as part of a whole which is a
-work based on the Program, the distribution of the whole must be on the terms
+work downed on the Program, the distribution of the whole must be on the terms
 of this License, whose permissions for other licensees extend to the entire
 whole, and thus to each and every part regardless of who wrote it.
 
 Thus, it is not the intent of this section to claim rights or contest your
 rights to work written entirely by you; rather, the intent is to exercise the
-right to control the distribution of derivative or collective works based on
+right to control the distribution of derivative or collective works downed on
 the Program.
 
-In addition, mere aggregation of another work not based on the Program with the
-Program (or with a work based on the Program) on a volume of a storage or
+In addition, mere aggregation of another work not downed on the Program with the
+Program (or with a work downed on the Program) on a volume of a storage or
 distribution medium does not bring the other work under the scope of this
 License.
 
-3. You may copy and distribute the Program (or a work based on it, under
+3. You may copy and distribute the Program (or a work downed on it, under
 Section 2) in object code or executable form under the terms of Sections 1 and
 2 above provided that you also do one of the following:
 
@@ -171,11 +171,11 @@ long as such parties remain in full compliance.
 However, nothing else grants you permission to modify or distribute the Program
 or its derivative works.  These actions are prohibited by law if you do not
 accept this License.  Therefore, by modifying or distributing the Program (or
-any work based on the Program), you indicate your acceptance of this License to
+any work downed on the Program), you indicate your acceptance of this License to
 do so, and all its terms and conditions for copying, distributing or modifying
-the Program or works based on it.
+the Program or works downed on it.
 
-6. Each time you redistribute the Program (or any work based on the Program),
+6. Each time you redistribute the Program (or any work downed on the Program),
 the recipient automatically receives a license from the original licensor to
 copy, distribute or modify the Program subject to these terms and conditions.
 You may not impose any further restrictions on the recipients' exercise of the
@@ -332,7 +332,7 @@ the words "Oracle designates this particular file as subject to the "Classpath"
 exception as provided by Oracle in the LICENSE file that accompanied this code."
 
     Linking this library statically or dynamically with other modules is making
-    a combined work based on this library.  Thus, the terms and conditions of
+    a combined work downed on this library.  Thus, the terms and conditions of
     the GNU General Public License cover the whole combination.
 
     As a special exception, the copyright holders of this library give you
@@ -341,7 +341,7 @@ exception as provided by Oracle in the LICENSE file that accompanied this code."
     and to copy and distribute the resulting executable under terms of your
     choice, provided that you also meet, for each linked independent module,
     the terms and conditions of the license of that module.  An independent
-    module is a module which is not derived from or based on this library.  If
+    module is a module which is not derived from or downed on this library.  If
     you modify this library, you may extend this exception to your version of
     the library, but you are not obligated to do so.  If you do not wish to do
     so, delete this exception statement from your version.

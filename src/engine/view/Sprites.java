@@ -50,8 +50,6 @@ public abstract class Sprites {
         return (activity + num);
     }
 
-    // afficheur de sprite
-
     /**
      *
      * @param x

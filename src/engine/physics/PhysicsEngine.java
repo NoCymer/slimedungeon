@@ -40,12 +40,12 @@ public class PhysicsEngine {
 			}
 	
 			// gestion du controleur
-			if (world.c.droite) {
+			if (world.c.right) {
 				world.player.ax = 0.1;
 				if (world.player.vx > SPEED)
 					world.player.vx = SPEED;
 	
-			} else if (world.c.gauche) {
+			} else if (world.c.left) {
 				world.player.ax = -0.1;
 				if (world.player.vx < -SPEED)
 					world.player.vx = -SPEED;
@@ -63,22 +63,22 @@ public class PhysicsEngine {
 			// gestion des deplacement verticaux
 			world.player.ay = 0;
 			world.player.vy = 0;
-			if (world.c.haut) {
-				if (world.c.gauche) {
+			if (world.c.up) {
+				if (world.c.left) {
 					world.player.vx = -SPEED * 0.75;
 					world.player.vy = SPEED * 0.75;
-				} else if (world.c.droite) {
+				} else if (world.c.right) {
 					world.player.vx = SPEED * 0.75;
 					world.player.vy = SPEED * 0.75;
 				} else {
 					world.player.vy = SPEED;
 				}
 			}
-			if (world.c.bas) {
-				if (world.c.gauche) {
+			if (world.c.down) {
+				if (world.c.left) {
 					world.player.vx = -SPEED * 0.75;
 					world.player.vy = -SPEED * 0.75;
-				} else if (world.c.droite) {
+				} else if (world.c.right) {
 					world.player.vx = SPEED * 0.75;
 					world.player.vy = -SPEED * 0.75;
 				} else {

@@ -1,4 +1,4 @@
-import engine.main.BouclePrincipale;
+import engine.main.MainLoop;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -78,7 +78,7 @@ public class Game {
         // le rendu
         Display display;
         // leS controlerS
-        KeyboardController keyboardController = new KeyboardController(true);
+        KeyboardController keyboardController = new KeyboardController();
         // Le monde
         World world;
 
@@ -172,10 +172,10 @@ public class Game {
             "Ramène le moi et je te promets une récompense. "
         });
         npc1.addLine(new String[] {
-            "Tu n’as pas encore appris à te battre, je vais donc t'apprendre les bases",
+            "Tu n’as pas encore appris à te battre, je vais donc t'apprendre les downes",
         });
         npc1.addLine(new String[] {
-            "Tu peux appuyer sur l'icone $ en bas a droite de ton ecran afin d'ameliorer",
+            "Tu peux appuyer sur l'icone $ en down a right de ton ecran afin d'ameliorer",
             "tes competences a tout moment",
             "Tu peux augmenter ta vie, ta defense et ton attaque",
             "Si tu as des gemmes sur toi, je te conseille d'ameliorer ton attaque dans un premier temps"
@@ -183,7 +183,7 @@ public class Game {
         npc1.addLine(new String[] {
             "Pour attaquer les redoutables ennemis que tu va devoir affronter",
             "Il te suffira de t'en approcher et ton aura meurtrière leur infligera des dégats.",
-            "En bas a droite de ton écran tu peux observer la charge de ton aura,",
+            "En down a right de ton écran tu peux observer la charge de ton aura,",
             "si elle est pleine tu pourra attaquer, sinon il te faudra attendre qu'elle se recharge."
         });
         npc1.addLine(new String[] {
@@ -267,17 +267,17 @@ public class Game {
         world.map.activeRoom.npcs.get(0).setActiveDialog("start");
 
         // Gestion de la boucle principale
-        BouclePrincipale maBoucle = new BouclePrincipale();
+        MainLoop gameLoop = new MainLoop();
         // Ajout du jeu physique
         GamePhysics GP = new GamePhysics();
-        maBoucle.jeuPhysique = GP;
+        gameLoop.jeuPhysique = GP;
         // Ajout du controler a le fenetre
-        maBoucle.cClavier = keyboardController;
+        gameLoop.cClavier = keyboardController;
         // Ajout de la vue au jeu
-        maBoucle.jeuPhysique.display = display;
+        gameLoop.jeuPhysique.display = display;
         // Ajout du jeu a la boucle
-        maBoucle.jeuPhysique.physicsEngine = physicsEngine;
-        maBoucle.jeuPhysique.physicsEngine.world = physicsEngine.world;
+        gameLoop.jeuPhysique.physicsEngine = physicsEngine;
+        gameLoop.jeuPhysique.physicsEngine.world = physicsEngine.world;
 
 
         TriggerMap triggerMap = new TriggerMap(world.player, world.map.getActiveRoom().getTileMap());
@@ -341,7 +341,7 @@ public class Game {
         world.addTriggerMap(triggerMap);
 
 
-        maBoucle.lanceBouclePrincipale();
+        gameLoop.start();
     }
     
 }
