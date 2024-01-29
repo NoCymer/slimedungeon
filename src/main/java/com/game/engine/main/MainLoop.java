@@ -23,13 +23,8 @@ public class MainLoop {
 		// mettre l'acces au controleur dans monde
 		jeuPhysique.physicsEngine.world.c = cClavier.c;
 
-		System.out.println("\n********************************");
-		System.out.println("* touche 'Q' pour arreter jeu  *");
-		System.out.println("********************************");
-
 		// fps
 		long dureeBoucle = 1000000 / fps;
-		System.out.println(" ---> duree d'une boucle " + dureeBoucle / 1000. + "\n");
 
 		// lancement
 		Thread.sleep(1000);
@@ -66,13 +61,6 @@ public class MainLoop {
 				(jeuPhysique.physicsEngine.world.map.size()/2)
 			);
 		}
-		long l2 = System.currentTimeMillis();
-
-		// statistiques
-		System.out.println("\n\n\n************************\n");
-		System.out.println("Iterations = " + n);
-		System.out.println("FPS = " + (n * 1000.0 / (l2 - l)));
-		System.out.println("\n************************");
 
 		System.exit(0);
 	}
