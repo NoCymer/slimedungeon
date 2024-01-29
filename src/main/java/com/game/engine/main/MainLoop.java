@@ -32,11 +32,8 @@ public class MainLoop {
 
 		// boucle
 		long beforeTime = System.nanoTime();
-		long l = System.currentTimeMillis();
-		// nombre iterations
-		int n = 0;
+		
 		while (!KeyboardController.fin) {
-			n++;
 			jeuPhysique.update();
 			jeuPhysique.render();
 
