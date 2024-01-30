@@ -6,10 +6,6 @@ import java.util.HashMap;
 import com.game.engine.physics.Entity;
 import com.game.engine.tiles.Atlas;
 
-/**
- *
- * @author Pierre-Frederic Villard
- */
 public class BossSprites extends Sprites {
 	/** The entity */
 	Entity entity;

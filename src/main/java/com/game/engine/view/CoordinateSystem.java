@@ -3,13 +3,7 @@ package com.game.engine.view;
 import com.game.engine.physics.PhysicalObject;
 import com.game.engine.physics.Player;
 
-/**
- * CoordinateSystem class
- * @author Pierre-Frederic Villard
- */
 public class CoordinateSystem {
-
-
 
     /** The window height */
     public static int windowHeight;

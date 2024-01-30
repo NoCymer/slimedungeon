@@ -3,13 +3,6 @@ package com.game.engine.view;
 import java.awt.Graphics;
 import java.util.HashMap;
 
-
-//distributeur de sprites
-
-/**
- * Sprites class
- * @author Pierre-Frederic Villard
- */
 public abstract class Sprites {
 
     /** The activity */
@@ -21,8 +14,6 @@ public abstract class Sprites {
      *
      */
     public int num;
-
-    // lie chaine et sprite
 
     /**
      *
@@ -51,8 +42,6 @@ public abstract class Sprites {
             s = sprites.get("erreur");
         s.draw(g, x, y);
     }
-
-    // permet de changer le type de sprite
 
     /**
      *

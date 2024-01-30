@@ -3,10 +3,6 @@ package com.game.engine.controller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-/**
- *
- * @author Pierre-Frederic Villard
- */
 public class KeyboardController implements KeyListener {
 
 	/**
