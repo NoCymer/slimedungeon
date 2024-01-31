@@ -16,6 +16,19 @@
     <build>
       <plugins>
         <plugin>
+          <groupId>com.googlecode.mavennatives</groupId>
+          <artifactId>maven-nativedependencies-plugin</artifactId>
+          <version>0.0.7</version>
+          <executions>
+              <execution>
+                  <id>unpacknatives</id>
+                  <goals>
+                      <goal>copy</goal>
+                  </goals>
+              </execution>
+          </executions>
+        </plugin>
+        <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
             <version>2.22.2</version>
@@ -46,5 +59,10 @@
       </plugins>
     </build>
     <dependencies>
+      <dependency>
+        <groupId>us.ihmc</groupId>
+        <artifactId>jinput</artifactId>
+        <version>2.0.6-ihmc2</version>
+    </dependency>
     </dependencies>
 </project>
