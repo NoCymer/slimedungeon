@@ -1,5 +1,6 @@
 package com.game.engine.main;
 
+import com.game.engine.controller.JoystickController;
 import com.game.engine.controller.KeyboardController;
 
 public class MainLoop {
@@ -9,6 +10,8 @@ public class MainLoop {
 	public GamePhysics jeuPhysique;
 	/** Keyboard controller */
 	public KeyboardController cClavier;
+	/** Joystick controller */
+	public JoystickController cJoystick;
 	/** Updates the fps 
 	 * @param fps
 	*/
@@ -31,6 +34,7 @@ public class MainLoop {
 		long beforeTime = System.nanoTime();
 		
 		while (!KeyboardController.fin) {
+			cJoystick.checkForInput();
 			jeuPhysique.update();
 			jeuPhysique.render();
 

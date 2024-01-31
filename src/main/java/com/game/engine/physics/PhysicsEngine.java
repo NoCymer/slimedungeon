@@ -35,51 +35,45 @@ public class PhysicsEngine {
 			for (Boss boss : world.map.activeRoom.bosses) {
 				boss.update();
 			}
-	
-			if (world.c.right) {
-				world.player.ax = 0.1;
-				if (world.player.vx > SPEED)
-					world.player.vx = SPEED;
-	
-			} else if (world.c.left) {
-				world.player.ax = -0.1;
-				if (world.player.vx < -SPEED)
-					world.player.vx = -SPEED;
-	
-			} else {
-				if ((world.player.vx < 0.2) && (world.player.vx > -0.2)) {
+
+			// Apply input
+			world.player.vx = world.c.x * 1.5;
+			world.player.vy = -world.c.y * 1.5;
+
+			// Intertia x
+			if (world.c.x == 0) { 
+				if(world.player.vx < 0.5 && world.player.vx > -0.5) {
 					world.player.vx = 0;
 					world.player.ax = 0;
-				} else if (world.player.vx > 0)
-					world.player.ax = -0.1;
-				else if (world.player.vx < 0)
-					world.player.ax = +0.1;
-			}
-	
-			world.player.ay = 0;
-			world.player.vy = 0;
-			if (world.c.up) {
-				if (world.c.left) {
-					world.player.vx = -SPEED * 0.75;
-					world.player.vy = SPEED * 0.75;
-				} else if (world.c.right) {
-					world.player.vx = SPEED * 0.75;
-					world.player.vy = SPEED * 0.75;
 				} else {
-					world.player.vy = SPEED;
+					if (world.player.vx > 0)
+						world.player.ax -= 0.1;
+					else if (world.player.vx < 0)
+						world.player.ax += 0.1;
+					else
+						world.player.ax = 0;
 				}
 			}
-			if (world.c.down) {
-				if (world.c.left) {
-					world.player.vx = -SPEED * 0.75;
-					world.player.vy = -SPEED * 0.75;
-				} else if (world.c.right) {
-					world.player.vx = SPEED * 0.75;
-					world.player.vy = -SPEED * 0.75;
+
+			// Intertia y
+			if (world.c.y == 0) {
+				if(world.player.vy < 0.5 && world.player.vy > -0.5) {
+					world.player.vy = 0;
+					world.player.ay = 0;
 				} else {
-					world.player.vy = -SPEED;
+					if (world.player.vy > 0)
+						world.player.ay -= 0.1;
+					else if (world.player.vy < 0)
+						world.player.ay += 0.1;
+					else
+						world.player.ay = 0;
 				}
 			}
+
+			// Speed clamping
+			world.player.vy = Math.clamp(world.player.vy, -SPEED, SPEED);
+			world.player.vx = Math.clamp(world.player.vx, -SPEED, SPEED);
+
 			if (world.player.vx > 0) {
 				if (world.player.vy > 0) {
 					world.player.sprites.changeActivity("up-right");

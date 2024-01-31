@@ -84,8 +84,6 @@ public class PhysicalObject {
     public void update() {
         px = px + vx;
         py = py + vy;
-        vx = vx + ax;
-        vy = vy + ay;
     }
 
     /**

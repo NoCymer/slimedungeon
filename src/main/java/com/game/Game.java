@@ -1,9 +1,12 @@
 package com.game;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.game.engine.main.MainLoop;
+import com.game.engine.controller.Control;
+import com.game.engine.controller.JoystickController;
 import com.game.engine.controller.KeyboardController;
 import com.game.engine.dialog.Dialog;
 import com.game.engine.dialog.DialogController;
@@ -76,7 +79,9 @@ public class Game {
     public static void main(String[] args) throws Exception {
         PhysicsEngine physicsEngine;
         Display display;
-        KeyboardController keyboardController = new KeyboardController();
+        Control control = new Control();
+        JoystickController joystickController = new JoystickController(control);
+        KeyboardController keyboardController = new KeyboardController(control, joystickController);
         World world;
 
 
@@ -265,6 +270,7 @@ public class Game {
         gameLoop.jeuPhysique = GP;
         
         gameLoop.cClavier = keyboardController;
+        gameLoop.cJoystick = joystickController;
         
         gameLoop.jeuPhysique.display = display;
         

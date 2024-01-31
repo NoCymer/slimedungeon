@@ -1,7 +1,8 @@
 package com.game.engine.controller;
 
 public class Control {
-
+    public float x;
+    public float y;
     /**
      * left keybind
      */
