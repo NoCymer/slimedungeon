@@ -17,13 +17,10 @@ public class JoystickController {
     }
 
     public void checkForInput() {
+        if(overriden) return;
         /* Get the available controllers */
         Controller[] controllers = ControllerEnvironment
                 .getDefaultEnvironment().getControllers();
-        if (controllers.length == 0) {
-            System.out.println("Found no controllers.");
-            System.exit(0);
-        }
 
         for (int i = 0; i < controllers.length; i++) {
             /* Prevent capturing joystick input */
@@ -43,7 +40,11 @@ public class JoystickController {
                 Component comp = event.getComponent();
                 float value = event.getValue();
 
+                // Only consider 2 digits after the point
                 value = (float)Math.round(value * 100)/100;
+
+                // If the value is too small do not consider it
+                // In order to prevent stick drift detection
                 if(Math.abs(value) - EPSILON < 0.1) {
                     value = 0;
                 }
@@ -57,10 +58,8 @@ public class JoystickController {
                 }
             }
         }
-        if(!overriden) {
-            c.x = x;
-            c.y = y;
-        }
+        c.x = x;
+        c.y = y;
     }
 }
 
