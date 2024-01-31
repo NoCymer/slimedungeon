@@ -75,8 +75,6 @@ public class NPC extends Entity {
 	 * @param g
 	 */
 	public void draw(Graphics g) {
-
-		// change de repere
 		g.setColor(Color.black);
 		Coords coords = CoordinateSystem.changeCS(this, world.map.getPosX(), world.map.getPosY());
 

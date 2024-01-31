@@ -20,8 +20,6 @@ public abstract class Sprites {
      */
     public HashMap<String, Sprite> sprites;
 
-    // construit le sprite
-
     /**
      *
      * @return

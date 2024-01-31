@@ -27,11 +27,6 @@ public class KeyboardController implements KeyListener {
 	/** Wheter or not the shop must be closed */
 	public static boolean closeShop = true;
 
-	/** 
-	 * @param e
-	 */
-	// constructeur avec affichage du controleur ou non.
-
 	@Override
 	public void keyTyped(KeyEvent e) {
 		

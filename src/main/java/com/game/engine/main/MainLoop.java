@@ -20,30 +20,20 @@ public class MainLoop {
 
 		// ControleurClavier cClavier=new ControleurClavier(true);
 		jeuPhysique.display.addKeyListener(cClavier);
-		// mettre l'acces au controleur dans monde
+		
 		jeuPhysique.physicsEngine.world.c = cClavier.c;
 
-		// fps
 		long dureeBoucle = 1000000 / fps;
 
-		// lancement
 		Thread.sleep(1000);
 		jeuPhysique.display.requestFocusInWindow();
 
-		// boucle
 		long beforeTime = System.nanoTime();
 		
 		while (!KeyboardController.fin) {
 			jeuPhysique.update();
 			jeuPhysique.render();
 
-			// apres le render en nanos
-			// long timafter = System.nanoTime();
-
-			// sleep en millisecond
-			// System.out.println(dureeBoucle);
-			// System.out.println(beforeTime);
-			// Thread.sleep((dureeBoucle - (timafter/ 1000 - beforeTime/ 1000))/1000);
 			while (System.nanoTime() - beforeTime - dureeBoucle * 1000L < 0) {}
 
 			beforeTime = System.nanoTime();

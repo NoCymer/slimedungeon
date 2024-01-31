@@ -286,8 +286,6 @@ public class Player extends Entity{
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(Color.black);
-
-		// change de repere
 		Coords coords = CoordinateSystem.changeCS(this, world.map.getPosX(), world.map.getPosY());
 		sprites.draw(coords.getX(), coords.getY(), g);
 		sprites.animate();

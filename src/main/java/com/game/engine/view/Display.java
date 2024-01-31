@@ -32,10 +32,6 @@ public class Display extends JPanel {
 
 		this.map = map;
 
-		// setPreferredSize(new Dimension(map.size(),map.size()));
-		// setPreferredSize(new Dimension(map.size() + 200,map.size() + 200));
-		
-		// setPreferredSize(new Dimension(800, 800));
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setResizable(false);
 		f.setUndecorated(true);
@@ -46,10 +42,9 @@ public class Display extends JPanel {
 		f.setLocationRelativeTo(null);
 		f.setVisible(true);
 		
-		// ajouter pour eviter les repaint
 		f.setIgnoreRepaint(true);
 
-		// double buffering
+		// Double buffering setup
 		f.createBufferStrategy(2);
 		bs = f.getBufferStrategy();
 		this.setIgnoreRepaint(true);

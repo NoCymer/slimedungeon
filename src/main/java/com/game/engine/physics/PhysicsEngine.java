@@ -24,22 +24,18 @@ public class PhysicsEngine {
 		if(!endGame) {
 			world.update();
 			
-			// mise a jour des monstres
 			for (Enemy enemy : world.map.activeRoom.enemies) {
 				enemy.update();
 			}
 				
-			// mise a jour des npcs
 			for (NPC npc : world.map.activeRoom.npcs) {
 				npc.update();
 			}
 
-			// mise a jour des boss
 			for (Boss boss : world.map.activeRoom.bosses) {
 				boss.update();
 			}
 	
-			// gestion du controleur
 			if (world.c.right) {
 				world.player.ax = 0.1;
 				if (world.player.vx > SPEED)
@@ -60,7 +56,6 @@ public class PhysicsEngine {
 					world.player.ax = +0.1;
 			}
 	
-			// gestion des deplacement verticaux
 			world.player.ay = 0;
 			world.player.vy = 0;
 			if (world.c.up) {
@@ -85,7 +80,6 @@ public class PhysicsEngine {
 					world.player.vy = -SPEED;
 				}
 			}
-			// gestion de l'activite du player
 			if (world.player.vx > 0) {
 				if (world.player.vy > 0) {
 					world.player.sprites.changeActivity("up-right");
@@ -107,7 +101,6 @@ public class PhysicsEngine {
 			} else if (world.player.vy < 0) {
 				world.player.sprites.changeActivity("down");
 			}
-			// mise a jour du balle
 			world.player.update();
 	
 			/** Checks for collision with the world border */
@@ -147,7 +140,6 @@ public class PhysicsEngine {
 					enemy.vy = enemy.vy * -0.9;
 				}
 	
-				// gestion de l'activite de l'enemy
 				if (enemy.vx > 0) {
 					if (enemy.vy > 0.5) {
 						enemy.sprite.changeActivity("up-right");

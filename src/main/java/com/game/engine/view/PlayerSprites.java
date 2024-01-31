@@ -65,42 +65,6 @@ public class PlayerSprites extends Sprites {
 		sprites.put("up-left0", spriteAtlas.get(7));
 		sprites.put("up-left1", spriteAtlas.get(8));
 		sprites.put("up-left2", spriteAtlas.get(7));
-		// sprites.put("fixe", spriteAtlas.get(10));
-		// sprites.put("fixe0", spriteAtlas.get(10));
-		// sprites.put("fixe1", spriteAtlas.get(10));
-		// sprites.put("fixe2", spriteAtlas.get(10));
-
-		// sprites.put("right0", spriteAtlas.get(40));
-		// sprites.put("right1", spriteAtlas.get(41));
-		// sprites.put("right2", spriteAtlas.get(42));
-
-		// sprites.put("left0", spriteAtlas.get(25));
-		// sprites.put("left1", spriteAtlas.get(26));
-		// sprites.put("left2", spriteAtlas.get(27));
-
-		// sprites.put("down0", spriteAtlas.get(10));
-		// sprites.put("down1", spriteAtlas.get(11));
-		// sprites.put("down2", spriteAtlas.get(12));
-		
-		// sprites.put("down-right0", spriteAtlas.get(10));
-		// sprites.put("down-right1", spriteAtlas.get(11));
-		// sprites.put("down-right2", spriteAtlas.get(12));
-		
-		// sprites.put("down-left0", spriteAtlas.get(10));
-		// sprites.put("down-left1", spriteAtlas.get(11));
-		// sprites.put("down-left2", spriteAtlas.get(12));
-		
-		// sprites.put("up0", spriteAtlas.get(55));
-		// sprites.put("up1", spriteAtlas.get(56));
-		// sprites.put("up2", spriteAtlas.get(57));
-
-		// sprites.put("up-right0", spriteAtlas.get(55));
-		// sprites.put("up-right1", spriteAtlas.get(56));
-		// sprites.put("up-right2", spriteAtlas.get(57));
-
-		// sprites.put("up-left0", spriteAtlas.get(25));
-		// sprites.put("up-left1", spriteAtlas.get(26));
-		// sprites.put("up-left2", spriteAtlas.get(27));
 	}
 
 	/** Draws the player sprite 
