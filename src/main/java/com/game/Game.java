@@ -74,13 +74,9 @@ public class Game {
      * @param args
     */
     public static void main(String[] args) throws Exception {
-        // le moteur physique
         PhysicsEngine physicsEngine;
-        // le rendu
         Display display;
-        // leS controlerS
         KeyboardController keyboardController = new KeyboardController();
-        // Le monde
         World world;
 
 
@@ -90,14 +86,9 @@ public class Game {
         EndMenu endMenu;
         DialogHud npcHud;
         
-
-
-        // Construction du monde
         world = new World();
 
-        // on creer le moteur physique
         physicsEngine = new PhysicsEngine();
-        // On ajoute le monde au moteur
         physicsEngine.world = world;
         
         Room startRoom = new Room(world, new Directions[] {Directions.UP});
@@ -130,7 +121,8 @@ public class Game {
         doorHud.setInteractable(false);
         doorHud.setIsShown(false);
         world.addHud("doorClosed", doorHud);
-        // dialogue des portes
+
+        // Door dialog
         Dialog doorClosed = new Dialog();
         doorClosed.addLine(new String[]{
             "Hop pas si vite !", 
@@ -159,7 +151,7 @@ public class Game {
 
         CoordinateSystem.setWindowHeight(display.getFrame().getHeight());
 
-        // Dialogue du gardien
+        // Guardian dialog
         Dialog npc1 = new Dialog();
         npc1.addLine(new String[] {
             "Bienvenue aventurier ! ",
@@ -267,16 +259,15 @@ public class Game {
         world.map.activeRoom.npcs.get(0).addDialog("end", npc1End);
         world.map.activeRoom.npcs.get(0).setActiveDialog("start");
 
-        // Gestion de la boucle principale
         MainLoop gameLoop = new MainLoop();
-        // Ajout du jeu physique
+        
         GamePhysics GP = new GamePhysics();
         gameLoop.jeuPhysique = GP;
-        // Ajout du controler a le fenetre
+        
         gameLoop.cClavier = keyboardController;
-        // Ajout de la vue au jeu
+        
         gameLoop.jeuPhysique.display = display;
-        // Ajout du jeu a la boucle
+        
         gameLoop.jeuPhysique.physicsEngine = physicsEngine;
         gameLoop.jeuPhysique.physicsEngine.world = physicsEngine.world;
 
