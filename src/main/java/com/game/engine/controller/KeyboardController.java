@@ -31,8 +31,6 @@ public class KeyboardController implements KeyListener {
 	/** Wheter or not the shop must be closed */
 	public static boolean closeShop = true;
 
-	private int joystickCooldown = 0;
-
 	@Override
 	public void keyTyped(KeyEvent e) {
 		
