@@ -87,16 +87,21 @@ public class KeyboardController implements KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_F){
 			nextDialog = true;
 		}
+
+		/* MANAGES THE JOYSTICK OVERRIDE MECHANISM  */
 		jc.overriden = true;
-		if(task != null)
-			task.cancel();
+		
+		if(task != null) task.cancel();
+
 		task = new TimerTask() {
 			@Override
 			public void run() {
 				jc.overriden = false;
 			}
 		};
+
 		timer.schedule(task, 1000);
+		/* -------------------------------------- */
 	}
 
 	@Override
