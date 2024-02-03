@@ -21,12 +21,11 @@ public class MainLoop {
 	/** Runs the game loop */
 	public void start() throws Exception {
 
-		// ControleurClavier cClavier=new ControleurClavier(true);
 		gamePhysics.display.addKeyListener(cKey);
 		
 		gamePhysics.physicsEngine.world.c = cKey.c;
 
-		long dureeBoucle = 1000000 / fps;
+		long loopDuration = 1000000 / fps;
 
 		Thread.sleep(1000);
 		gamePhysics.display.requestFocusInWindow();
@@ -38,7 +37,7 @@ public class MainLoop {
 			gamePhysics.update();
 			gamePhysics.render();
 
-			while (System.nanoTime() - beforeTime - dureeBoucle * 1000L < 0) {}
+			while (System.nanoTime() - beforeTime - loopDuration * 1000L < 0) {}
 
 			beforeTime = System.nanoTime();
 
