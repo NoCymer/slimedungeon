@@ -6,6 +6,7 @@ import java.util.Arrays;
 import com.game.engine.main.MainLoop;
 import com.game.engine.controller.Control;
 import com.game.engine.controller.JoystickController;
+import com.game.engine.controller.KeyBindingsManager;
 import com.game.engine.controller.KeyController;
 import com.game.engine.dialog.Dialog;
 import com.game.engine.dialog.DialogController;
@@ -81,6 +82,7 @@ public class Game {
         Control control = new Control();
         JoystickController joystickController = new JoystickController(control);
         KeyController keyboardController = new KeyController(control, joystickController);
+        KeyBindingsManager.setJoystickController(joystickController);
         World world;
 
 

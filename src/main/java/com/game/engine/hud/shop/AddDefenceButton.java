@@ -7,6 +7,8 @@ import javax.imageio.ImageIO;
 
 import com.game.engine.hud.Button;
 import com.game.engine.physics.Player;
+import com.game.engine.shop.DefenceBooster;
+import com.game.engine.shop.ShopManager;
 import com.game.engine.view.Coords;
 import com.game.engine.view.Sprite;
 /** AddDefenceButton class */
@@ -47,10 +49,6 @@ public class AddDefenceButton extends Button {
 
     @Override
     public void onClick() {
-        int curr = player.getDefenceMultiplicator()+1;
-        if(curr <= 10 && player.getGems() >= 5) {
-            player.setDefenceMultiplicator(curr);
-            player.addgems(-5);
-        }
+        ShopManager.instance().tryBuyItem(player, new DefenceBooster());
     }
 }

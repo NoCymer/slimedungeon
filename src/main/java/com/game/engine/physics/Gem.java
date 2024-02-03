@@ -25,7 +25,7 @@ public class Gem extends Item {
     }
     /** Pickup logic of the item */
     public void pickup(){
-        world.player.addgems(5);
+        world.player.addGems(5);
         world.map.activeRoom.items.remove(this);
     }
     

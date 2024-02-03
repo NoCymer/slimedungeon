@@ -57,7 +57,7 @@ public class Enemy extends Entity {
 	@Override
 	public void handleDeath() {
 		world.map.activeRoom.enemies.remove(world.map.activeRoom.enemies.indexOf(this));
-		world.player.addgems(3);
+		world.player.addGems(3);
 		world.huds.get("hud").removeElement(healthBar);
 	}
 

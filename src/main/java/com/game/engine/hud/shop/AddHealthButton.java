@@ -7,6 +7,8 @@ import javax.imageio.ImageIO;
 
 import com.game.engine.hud.Button;
 import com.game.engine.physics.Player;
+import com.game.engine.shop.HealthBooster;
+import com.game.engine.shop.ShopManager;
 import com.game.engine.view.Coords;
 import com.game.engine.view.Sprite;
 /** AddHealthButton class */
@@ -47,11 +49,6 @@ public class AddHealthButton extends Button {
 
     @Override
     public void onClick() {
-        int curr = player.getHealthMultiplicator()+1;
-        if(curr <= 10 && player.getGems() >= 5) {
-            player.setHealthMultiplicator(curr);
-            player.setHealth(player.getHealth() + player.HEALTH_MUL_UNIT);
-            player.addgems(-5);
-        }
+        ShopManager.instance().tryBuyItem(player, new HealthBooster());
     }
 }

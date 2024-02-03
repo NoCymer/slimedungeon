@@ -2,18 +2,19 @@ package com.game.engine.controller;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.ArrayList;
 
 public class KeyController extends KeyAdapter {
 
 	/**
 	 * end of the game
 	 */
-	public static boolean fin = false;
+	public static boolean closeGame = false;
 
 	/** the player can move or not */
 	public static boolean canMove = true;
+
+	public static ArrayList<Integer> activeKeys = new ArrayList<Integer>();
 
 	/**
 	 * The controller
@@ -31,133 +32,162 @@ public class KeyController extends KeyAdapter {
 	/** Wheter or not the shop must be closed */
 	public static boolean closeShop = true;
 
+	/** Wheter or not the shop must be closed */
+	public static boolean buyHealthBooster = false;
+
+	/** Wheter or not the shop must be closed */
+	public static boolean buyDefenceBooster = false;
+
+	/** Wheter or not the shop must be closed */
+	public static boolean buyAttackBooster = false;
+
 	/**
 	 * keyboard controller
 	 */
 	public KeyController(Control c, JoystickController jc) {
 		this.c = c;
 		this.jc = jc;
-	}
-	
-	private Timer timer = new Timer("Timer");
-	private TimerTask task;
 
-	/**
-	 *  Overrides the joystick for a given delay in ms then goes back to normal
-	 * @param delay Delay in ms befor override is over
-	 */
-	private void overrideJoystick(int delay) {
-		jc.overriden = true;
-		
-		if(task != null) task.cancel();
-
-		task = new TimerTask() {
+		// Left movement
+		KeyBindingsManager.bindKey(KeyEvent.VK_LEFT, new KeyBinding(true) {
 			@Override
-			public void run() {
-				jc.overriden = false;
+			public void onPressed() {
+				if(canMove) c.x = -1;
 			}
-		};
+			@Override
+			public void onReleased() {
+				if(c.x<0) c.x = 0;
+			}
+		});
 
-		timer.schedule(task, delay);
+		// Right movement
+		KeyBindingsManager.bindKey(KeyEvent.VK_RIGHT, new KeyBinding(true) {
+			@Override
+			public void onPressed() {
+				if(canMove) c.x = 1;
+			}
+			@Override
+			public void onReleased() {
+				if(c.x>0) c.x = 0;
+			}
+		});
+
+		// Up movement
+		KeyBindingsManager.bindKey(KeyEvent.VK_UP, new KeyBinding(true) {
+			@Override
+			public void onPressed() {
+				if(canMove) c.y = -1;
+			}
+			@Override
+			public void onReleased() {
+				if(c.y<0) c.y = 0;
+			}
+		});
+
+		// Down movement
+		KeyBindingsManager.bindKey(KeyEvent.VK_DOWN, new KeyBinding(true) {
+			@Override
+			public void onPressed() {
+				if(canMove) c.y = 1;
+			}
+			@Override
+			public void onReleased() {
+				if(c.y>0) c.y = 0;
+			}
+		});
+
+		// Open map
+		KeyBindingsManager.bindKey(KeyEvent.VK_M, new KeyBinding(true) {
+			@Override
+			public void onPressed() {
+				map = true;
+			}
+			@Override
+			public void onReleased() {
+				map = false;
+			}
+		});
+
+		// Next dialog
+		KeyBindingsManager.bindKey(KeyEvent.VK_F, new KeyBinding(true) {
+			@Override
+			public void onPressed() {
+				nextDialog = true;
+			}
+			@Override
+			public void onReleased() {
+				nextDialog = false;
+			}
+		});
+
+		// Quit game
+		KeyBindingsManager.bindKey(KeyEvent.VK_Q, new KeyBinding(true) {
+			@Override
+			public void onPressed() {
+				closeGame = true;
+			}
+			@Override
+			public void onReleased() {
+				closeGame = false;
+			}
+		});
+
+		// Close shop
+		KeyBindingsManager.bindKey(KeyEvent.VK_ESCAPE, new KeyBinding(true) {
+			@Override
+			public void onPressed() { }
+			@Override
+			public void onReleased() {
+				closeShop = true;
+				canMove = true;
+			}
+		});
+
+		// Buy health booster
+		KeyBindingsManager.bindKey(KeyEvent.VK_F13, new KeyBinding(true) {
+			@Override
+			public void onPressed() {
+				if(!closeShop) buyHealthBooster = true;
+			}
+			@Override
+			public void onReleased() {
+				buyHealthBooster = false;
+			}
+		});
+
+		// Buy defence booster
+		KeyBindingsManager.bindKey(KeyEvent.VK_F14, new KeyBinding(true) {
+			@Override
+			public void onPressed() {
+				if(!closeShop) buyDefenceBooster = true;
+			}
+			@Override
+			public void onReleased() {
+				buyDefenceBooster = false;
+			}
+		});
+
+		// Buy attack booster
+		KeyBindingsManager.bindKey(KeyEvent.VK_F15, new KeyBinding(true) {
+			@Override
+			public void onPressed() {
+				if(!closeShop) buyAttackBooster = true;
+			}
+			@Override
+			public void onReleased() {
+				buyAttackBooster = false;
+			}
+		});
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// Movement key pressed considered true
-		// until proven it has not been pressed
-		boolean kbMovementPressed = true;
-
-		// Menu action key pressed considered true
-		// until proven it has not been pressed
-		boolean kbMenuActionPressed = true;
-
-		// Movement controls
-		if(canMove){
-			switch (e.getKeyCode()) {
-				// left key
-				case KeyEvent.VK_LEFT:
-					c.x = -1;
-					break;
-				// right key
-				case KeyEvent.VK_RIGHT:
-					c.x = 1;
-					break;
-				// up key
-				case KeyEvent.VK_UP:
-					c.y = -1;
-					break;
-				// down key
-				case KeyEvent.VK_DOWN:
-					c.y = 1;
-					break;
-				default:
-					kbMovementPressed = false;
-					break;
-			}	
-		}
-		else kbMovementPressed = false;
-
-		// Menu controls
-		switch (e.getKeyCode()) {
-			// M key
-			case KeyEvent.VK_M:
-				map = true;
-				break;
-			// F key
-			case KeyEvent.VK_F:
-				nextDialog = true;
-				break;
-			// Q key
-			case KeyEvent.VK_Q:
-				fin = true;
-				break;
-			default:
-				kbMenuActionPressed = false;
-				break;
-		}
-
-		if(kbMovementPressed) overrideJoystick(1000);
+		KeyBindingsManager.handleKeyPressed(e);
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		switch (e.getKeyCode()) {
-			// left key
-			case KeyEvent.VK_LEFT:
-				if(c.x<0) c.x = 0;
-				break;
-			// right key
-			case KeyEvent.VK_RIGHT:
-				if(c.x>0) c.x = 0;
-				break;
-			// up key
-			case KeyEvent.VK_UP:
-				if(c.y<0) c.y = 0;
-				break;
-			// down key
-			case KeyEvent.VK_DOWN:
-				if(c.y>0) c.y = 0;
-				break;
-			// M key
-			case KeyEvent.VK_M:
-				map = false;
-				break;
-			// F key
-			case KeyEvent.VK_F:
-				nextDialog = false;
-				break;
-			// Q key
-			case KeyEvent.VK_Q:
-				fin = false;
-				break;
-			// Escape key
-			case KeyEvent.VK_ESCAPE:
-				closeShop = true;
-				canMove = true;
-				break;
-			default:
-				break;
-		}
+		KeyBindingsManager.handleKeyReleased(e);
 	}
 
 }

@@ -44,6 +44,6 @@ public class EMQuitButton extends Button {
 
     @Override
     public void onClick() {
-        KeyController.fin = true;
+        KeyController.closeGame = true;
     }
 }

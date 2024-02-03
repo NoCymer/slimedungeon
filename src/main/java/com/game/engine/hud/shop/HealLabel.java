@@ -8,6 +8,8 @@ import javax.imageio.ImageIO;
 
 import com.game.engine.hud.HudElement;
 import com.game.engine.physics.Player;
+import com.game.engine.shop.HealthRestore;
+import com.game.engine.shop.ShopManager;
 import com.game.engine.view.Coords;
 import com.game.engine.view.Sprite;
 /** HealLabel class */
@@ -53,18 +55,7 @@ public class HealLabel extends HudElement{
 
     @Override
     public void onClick() {
-        int vie = player.getHealth();
-        int maxVie = player.getMaxHealth();
-        if (player.getGems() >= 5){
-            if(vie +40 <= maxVie) {
-                player.setHealth(vie + 40);
-                player.addgems(-5);
-            }
-            else if(vie+40 < maxVie + 40){
-                player.setHealth(maxVie);
-                player.addgems(-5);
-            }
-        }
+        ShopManager.instance().tryBuyItem(player, new HealthRestore());
     }
     
 }

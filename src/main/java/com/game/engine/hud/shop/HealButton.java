@@ -52,11 +52,11 @@ public class HealButton extends Button {
         if (player.getGems() >= 5){
             if(vie +40 <= maxVie) {
                 player.setHealth(vie + 40);
-                player.addgems(-5);
+                player.addGems(-5);
             }
             else if(vie+40 < maxVie + 40){
                 player.setHealth(maxVie);
-                player.addgems(-5);
+                player.addGems(-5);
             }
         }
     }

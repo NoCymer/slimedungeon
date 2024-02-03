@@ -132,7 +132,7 @@ public class Player extends Entity{
 	public void update() {
 		super.update();
 		if(world.map.enemiesCount()==0 && !endRewarded) {
-			addgems(15);
+			addGems(15);
 			endRewarded = true;
 		}
 		ArrayList<Enemy> cpyEnemies = new ArrayList<Enemy>(world.map.activeRoom.enemies);
@@ -164,10 +164,16 @@ public class Player extends Entity{
 		hasBossLoot = true;
 	}
 
+	/**  Remove gems from the player
+	 * @param gems 
+	 */
+	public void removeGems(int gems){
+		this.gems -= gems;
+	}
 	/**  Adds gems to the player
 	 * @param gems 
 	 */
-	public void addgems(int gems){
+	public void addGems(int gems){
 		this.gems += gems;
 	}
 

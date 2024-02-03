@@ -32,7 +32,7 @@ public class MainLoop {
 
 		long beforeTime = System.nanoTime();
 		
-		while (!KeyController.fin) {
+		while (!KeyController.closeGame) {
 			cJoystick.checkForInput();
 			gamePhysics.update();
 			gamePhysics.render();

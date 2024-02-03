@@ -44,6 +44,6 @@ public class GOQuitButton extends Button {
 
     @Override
     public void onClick() {
-        KeyController.fin = true;
+        KeyController.closeGame = true;
     }
 }
