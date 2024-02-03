@@ -1,15 +1,15 @@
 package com.game.engine.main;
 
 import com.game.engine.controller.JoystickController;
-import com.game.engine.controller.KeyboardController;
+import com.game.engine.controller.KeyController;
 
 public class MainLoop {
 	/** Frames per secons */
 	public int fps = 60;
 	/** The game physics */
-	public GamePhysics jeuPhysique;
+	public GamePhysics gamePhysics;
 	/** Keyboard controller */
-	public KeyboardController cClavier;
+	public KeyController cKey;
 	/** Joystick controller */
 	public JoystickController cJoystick;
 	/** Updates the fps 
@@ -22,34 +22,34 @@ public class MainLoop {
 	public void start() throws Exception {
 
 		// ControleurClavier cClavier=new ControleurClavier(true);
-		jeuPhysique.display.addKeyListener(cClavier);
+		gamePhysics.display.addKeyListener(cKey);
 		
-		jeuPhysique.physicsEngine.world.c = cClavier.c;
+		gamePhysics.physicsEngine.world.c = cKey.c;
 
 		long dureeBoucle = 1000000 / fps;
 
 		Thread.sleep(1000);
-		jeuPhysique.display.requestFocusInWindow();
+		gamePhysics.display.requestFocusInWindow();
 
 		long beforeTime = System.nanoTime();
 		
-		while (!KeyboardController.fin) {
+		while (!KeyController.fin) {
 			cJoystick.checkForInput();
-			jeuPhysique.update();
-			jeuPhysique.render();
+			gamePhysics.update();
+			gamePhysics.render();
 
 			while (System.nanoTime() - beforeTime - dureeBoucle * 1000L < 0) {}
 
 			beforeTime = System.nanoTime();
 
 			// Changes the world's map's position according to the window height
-			jeuPhysique.physicsEngine.world.map.setPosX(
-				(jeuPhysique.display.getWidth()/2) -
-				(jeuPhysique.physicsEngine.world.map.size()/2)
+			gamePhysics.physicsEngine.world.map.setPosX(
+				(gamePhysics.display.getWidth()/2) -
+				(gamePhysics.physicsEngine.world.map.size()/2)
 			);
-			jeuPhysique.physicsEngine.world.map.setPosY(
-				(jeuPhysique.display.getHeight()/2) -
-				(jeuPhysique.physicsEngine.world.map.size()/2)
+			gamePhysics.physicsEngine.world.map.setPosY(
+				(gamePhysics.display.getHeight()/2) -
+				(gamePhysics.physicsEngine.world.map.size()/2)
 			);
 		}
 

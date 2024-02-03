@@ -6,7 +6,7 @@ import java.util.Arrays;
 import com.game.engine.main.MainLoop;
 import com.game.engine.controller.Control;
 import com.game.engine.controller.JoystickController;
-import com.game.engine.controller.KeyboardController;
+import com.game.engine.controller.KeyController;
 import com.game.engine.dialog.Dialog;
 import com.game.engine.dialog.DialogController;
 import com.game.engine.generation.Room;
@@ -80,7 +80,7 @@ public class Game {
         Display display;
         Control control = new Control();
         JoystickController joystickController = new JoystickController(control);
-        KeyboardController keyboardController = new KeyboardController(control, joystickController);
+        KeyController keyboardController = new KeyController(control, joystickController);
         World world;
 
 
@@ -266,15 +266,15 @@ public class Game {
         MainLoop gameLoop = new MainLoop();
         
         GamePhysics GP = new GamePhysics();
-        gameLoop.jeuPhysique = GP;
+        gameLoop.gamePhysics = GP;
         
-        gameLoop.cClavier = keyboardController;
+        gameLoop.cKey = keyboardController;
         gameLoop.cJoystick = joystickController;
         
-        gameLoop.jeuPhysique.display = display;
+        gameLoop.gamePhysics.display = display;
         
-        gameLoop.jeuPhysique.physicsEngine = physicsEngine;
-        gameLoop.jeuPhysique.physicsEngine.world = physicsEngine.world;
+        gameLoop.gamePhysics.physicsEngine = physicsEngine;
+        gameLoop.gamePhysics.physicsEngine.world = physicsEngine.world;
 
 
         TriggerMap triggerMap = new TriggerMap(world.player, world.map.getActiveRoom().getTileMap());

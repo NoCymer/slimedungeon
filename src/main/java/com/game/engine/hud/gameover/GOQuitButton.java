@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import com.game.engine.controller.KeyboardController;
+import com.game.engine.controller.KeyController;
 import com.game.engine.hud.Button;
 import com.game.engine.view.Coords;
 import com.game.engine.view.Sprite;
@@ -44,6 +44,6 @@ public class GOQuitButton extends Button {
 
     @Override
     public void onClick() {
-        KeyboardController.fin = true;
+        KeyController.fin = true;
     }
 }

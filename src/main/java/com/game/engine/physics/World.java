@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.game.engine.controller.Control;
-import com.game.engine.controller.KeyboardController;
+import com.game.engine.controller.KeyController;
 import com.game.engine.dialog.DialogController;
 import com.game.engine.generation.Map;
 import com.game.engine.hud.Hud;
@@ -115,12 +115,12 @@ public class World {
 
     /** Updates the world */
     public void update() {
-        mapHud.setIsShown(KeyboardController.map);
-        if(KeyboardController.nextDialog && DialogController.getCurrentDialog() !=null && huds.get("npc").isShown()){
+        mapHud.setIsShown(KeyController.map);
+        if(KeyController.nextDialog && DialogController.getCurrentDialog() !=null && huds.get("npc").isShown()){
             DialogController.getCurrentDialog().nextLine();
-            KeyboardController.nextDialog = false;
+            KeyController.nextDialog = false;
         }
-        shop.setIsShown(!KeyboardController.closeShop);
+        shop.setIsShown(!KeyController.closeShop);
         if(map.enemiesCount() == 0) {
             map.endRoom.unlockRoom();
         }
