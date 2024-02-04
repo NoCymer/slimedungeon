@@ -26,6 +26,7 @@ import com.game.engine.physics.Enemy;
 import com.game.engine.physics.PhysicsEngine;
 import com.game.engine.physics.World;
 import com.game.engine.physics.WorldBorder;
+import com.game.engine.shop.ShopManager;
 import com.game.engine.tiles.Directions;
 import com.game.engine.trigger.Trigger;
 import com.game.engine.trigger.TriggerMap;
@@ -81,7 +82,7 @@ public class Game {
         Display display;
         Control control = new Control();
         JoystickController joystickController = new JoystickController(control);
-        KeyController keyboardController = new KeyController(control, joystickController);
+        KeyController keyController = new KeyController(control, joystickController);
         KeyBindingsManager.setJoystickController(joystickController);
         World world;
 
@@ -122,6 +123,7 @@ public class Game {
         }
         // END OF WARNING
         world.setPlayer(0, 0, 256,20, 100, 10);
+        keyController.setPlayer(world.player);
 
         DialogHud doorHud = new DialogHud(display, 0,0, display.getWidth(),display.getHeight()/5);
         doorHud.setInteractable(false);
@@ -220,6 +222,8 @@ public class Game {
             world.map
         );
 
+        ShopManager.instance().setShop(world.shop);
+
         playerHud = new PlayerHud(display, world.player, world.shop);
         playerHud.setIsShown(false);
         playerHud.setInteractable(false);
@@ -270,7 +274,7 @@ public class Game {
         GamePhysics GP = new GamePhysics();
         gameLoop.gamePhysics = GP;
         
-        gameLoop.cKey = keyboardController;
+        gameLoop.cKey = keyController;
         gameLoop.cJoystick = joystickController;
         
         gameLoop.gamePhysics.display = display;

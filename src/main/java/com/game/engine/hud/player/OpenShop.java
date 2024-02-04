@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import com.game.engine.controller.KeyController;
 import com.game.engine.hud.HudElement;
 import com.game.engine.hud.shop.Shop;
+import com.game.engine.shop.ShopManager;
 import com.game.engine.view.Coords;
 import com.game.engine.view.Sprite;
 /** OpenShop class */
@@ -49,10 +50,10 @@ public class OpenShop extends HudElement{
 
     @Override
     public void onClick() {
-        KeyController.closeShop = !KeyController.closeShop;
-        shop.setIsShown(true);
-        shop.setInteractable(true);
-        KeyController.canMove = !KeyController.canMove;
+        if(ShopManager.instance().isShopOpened())
+            ShopManager.instance().closeShop();
+        else 
+            ShopManager.instance().openShop();
     }
     
 }

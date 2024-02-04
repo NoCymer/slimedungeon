@@ -120,7 +120,6 @@ public class World {
             DialogController.getCurrentDialog().nextLine();
             KeyController.nextDialog = false;
         }
-        shop.setIsShown(!KeyController.closeShop);
         if(map.enemiesCount() == 0) {
             map.endRoom.unlockRoom();
         }

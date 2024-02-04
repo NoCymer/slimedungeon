@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 
 import com.game.engine.controller.KeyController;
 import com.game.engine.hud.Button;
+import com.game.engine.shop.ShopManager;
 import com.game.engine.view.Coords;
 import com.game.engine.view.Sprite;
 /** CloseButton class */
@@ -47,9 +48,6 @@ public class CloseButton extends Button {
 
     @Override
     public void onClick() {
-        shop.setInteractable(false);   
-        shop.setIsShown(false);
-        KeyController.canMove = true;
-        KeyController.closeShop = true;
+        ShopManager.instance().closeShop();
     }
 }

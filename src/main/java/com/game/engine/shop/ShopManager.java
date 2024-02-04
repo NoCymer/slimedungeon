@@ -1,5 +1,7 @@
 package com.game.engine.shop;
 
+import com.game.engine.controller.KeyController;
+import com.game.engine.hud.shop.Shop;
 import com.game.engine.physics.Player;
 
 /**
@@ -7,8 +9,18 @@ import com.game.engine.physics.Player;
  */
 public class ShopManager {
     private static ShopManager instance = new ShopManager();
+    private boolean isShopOpened = false;
+    private Shop shop;
 
-    protected ShopManager() {}
+    protected ShopManager() {} 
+
+    public Shop getShop() {
+        return shop;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
+    }
 
     /**
      * Tries to buy an item in the shop
@@ -33,5 +45,23 @@ public class ShopManager {
     public static ShopManager instance() {
         if(instance == null) instance = new ShopManager();
         return instance;
+    }
+
+    public boolean isShopOpened() {
+        return isShopOpened;
+    }
+
+    public void openShop() {
+        isShopOpened = true;
+        shop.setIsShown(true);
+        shop.setInteractable(true);
+        KeyController.canMove = false;
+    }
+
+    public void closeShop() {
+        isShopOpened = false;
+        shop.setIsShown(false);
+        shop.setInteractable(false);
+        KeyController.canMove = true;
     }
 }

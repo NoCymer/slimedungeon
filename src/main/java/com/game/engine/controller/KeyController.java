@@ -4,6 +4,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 import java.util.ArrayList;
 
+import com.game.engine.hud.shop.Shop;
+import com.game.engine.physics.Player;
+import com.game.engine.shop.AttackBooster;
+import com.game.engine.shop.DefenceBooster;
+import com.game.engine.shop.HealthBooster;
+import com.game.engine.shop.HealthRestore;
+import com.game.engine.shop.ShopManager;
+
 public class KeyController extends KeyAdapter {
 
 	/**
@@ -29,17 +37,21 @@ public class KeyController extends KeyAdapter {
 	/** Shows the next dialog */
 	public static boolean nextDialog = false;
 
-	/** Wheter or not the shop must be closed */
-	public static boolean closeShop = true;
-
-	/** Wheter or not the shop must be closed */
+	/** If the player wants to buy health booster */
 	public static boolean buyHealthBooster = false;
 
-	/** Wheter or not the shop must be closed */
+	/** If the player wants to buy defence booster */
 	public static boolean buyDefenceBooster = false;
 
-	/** Wheter or not the shop must be closed */
+	/** If the player wants to buy attack booster */
 	public static boolean buyAttackBooster = false;
+
+	/** If the player wants to buy health restore */
+	public static boolean buyHealthRestore = false;
+
+	/** Reference to a player */
+	private static Player player;
+	
 
 	/**
 	 * keyboard controller
@@ -132,22 +144,39 @@ public class KeyController extends KeyAdapter {
 			}
 		});
 
+		// Open shop
+		KeyBindingsManager.bindKey(KeyEvent.VK_U, new KeyBinding(true) {
+			@Override
+			public void onPressed() {
+				if(!ShopManager.instance().isShopOpened()) {
+					ShopManager.instance().openShop();
+				}
+				else {
+					ShopManager.instance().closeShop();
+				}
+			}
+			@Override
+			public void onReleased() { }
+		});
+
 		// Close shop
 		KeyBindingsManager.bindKey(KeyEvent.VK_ESCAPE, new KeyBinding(true) {
 			@Override
 			public void onPressed() { }
 			@Override
 			public void onReleased() {
-				closeShop = true;
-				canMove = true;
+				ShopManager.instance().closeShop();
 			}
 		});
 
 		// Buy health booster
-		KeyBindingsManager.bindKey(KeyEvent.VK_F13, new KeyBinding(true) {
+		KeyBindingsManager.bindKey(KeyEvent.VK_I, new KeyBinding(true) {
 			@Override
 			public void onPressed() {
-				if(!closeShop) buyHealthBooster = true;
+				if(ShopManager.instance().isShopOpened() && !buyHealthBooster) {
+					buyHealthBooster = true;
+					ShopManager.instance().tryBuyItem(player, new HealthBooster());
+				}
 			}
 			@Override
 			public void onReleased() {
@@ -156,10 +185,13 @@ public class KeyController extends KeyAdapter {
 		});
 
 		// Buy defence booster
-		KeyBindingsManager.bindKey(KeyEvent.VK_F14, new KeyBinding(true) {
+		KeyBindingsManager.bindKey(KeyEvent.VK_O, new KeyBinding(true) {
 			@Override
 			public void onPressed() {
-				if(!closeShop) buyDefenceBooster = true;
+				if(ShopManager.instance().isShopOpened()  && !buyDefenceBooster) {
+					buyDefenceBooster = true;
+					ShopManager.instance().tryBuyItem(player, new DefenceBooster());
+				}
 			}
 			@Override
 			public void onReleased() {
@@ -168,14 +200,32 @@ public class KeyController extends KeyAdapter {
 		});
 
 		// Buy attack booster
-		KeyBindingsManager.bindKey(KeyEvent.VK_F15, new KeyBinding(true) {
+		KeyBindingsManager.bindKey(KeyEvent.VK_P, new KeyBinding(true) {
 			@Override
 			public void onPressed() {
-				if(!closeShop) buyAttackBooster = true;
+				if(ShopManager.instance().isShopOpened()  && !buyAttackBooster) {
+					buyAttackBooster = true;
+					ShopManager.instance().tryBuyItem(player, new AttackBooster());
+				}
 			}
 			@Override
 			public void onReleased() {
 				buyAttackBooster = false;
+			}
+		});
+
+		// Buy health restore
+		KeyBindingsManager.bindKey(KeyEvent.VK_L, new KeyBinding(true) {
+			@Override
+			public void onPressed() {
+				if(ShopManager.instance().isShopOpened()  && !buyHealthRestore) {
+					buyHealthRestore = true;
+					ShopManager.instance().tryBuyItem(player, new HealthRestore());
+				}
+			}
+			@Override
+			public void onReleased() {
+				buyHealthRestore = false;
 			}
 		});
 	}
@@ -190,4 +240,14 @@ public class KeyController extends KeyAdapter {
 		KeyBindingsManager.handleKeyReleased(e);
 	}
 
+	public static Player getPlayer() {
+		return player;
+	}
+
+	public static void setPlayer(Player player) {
+		KeyController.player = player;
+	}
+
+
+	
 }
