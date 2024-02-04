@@ -4,7 +4,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 import java.util.ArrayList;
 
-import com.game.engine.hud.shop.Shop;
 import com.game.engine.physics.Player;
 import com.game.engine.shop.AttackBooster;
 import com.game.engine.shop.DefenceBooster;

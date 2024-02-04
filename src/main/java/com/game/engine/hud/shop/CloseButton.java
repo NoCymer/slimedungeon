@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import com.game.engine.controller.KeyController;
 import com.game.engine.hud.Button;
 import com.game.engine.shop.ShopManager;
 import com.game.engine.view.Coords;

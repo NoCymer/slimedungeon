@@ -123,7 +123,7 @@ public class Game {
         }
         // END OF WARNING
         world.setPlayer(0, 0, 256,20, 100, 10);
-        keyController.setPlayer(world.player);
+        KeyController.setPlayer(world.player);
 
         DialogHud doorHud = new DialogHud(display, 0,0, display.getWidth(),display.getHeight()/5);
         doorHud.setInteractable(false);
