@@ -19,7 +19,7 @@ public class StartButton extends Button {
      * @param width
      * @param height
     */
-    public StartButton(Coords origin, Menu menu, int x, int y, int width, int height) throws IOException{
+    public StartButton(Coords origin, Menu menu, int x, int y, int width, int height, String imgUrl, String umgActiveUrl) throws IOException{
         super(
             origin,
             new Sprite(
@@ -27,7 +27,7 @@ public class StartButton extends Button {
                 y,
                 2,
                 ImageIO.read(
-                    new File("assets/misc/Play.png")
+                    new File(imgUrl)
                 )
                 
             ),
@@ -36,7 +36,7 @@ public class StartButton extends Button {
                 y,
                 2,
                 ImageIO.read(
-                    new File("assets/misc/Play_active.png")
+                    new File(umgActiveUrl)
                 )
                 
             ), x, y, width, height

@@ -1,20 +1,19 @@
 package com.game.engine.controller;
 
+/**
+ * @author Lobsang RIGARD
+ * Class used to represent a binding that can be associated with a keystroke 
+ */
 public abstract class KeyBinding {
-    private boolean overridesJoystick = false;
-
-    protected KeyBinding(boolean overridesJoystick) {
-        this.overridesJoystick = overridesJoystick;
-    }
-    protected KeyBinding() { this(false); }
+    protected KeyBinding() {}
     
+    /**
+     * Called when the key binded is pressed
+     */
     public void onPressed() {};
-    public void onReleased() {}
 
-    public boolean overridesJoystick() {
-        return overridesJoystick;
-    }
-    public void setOverridesJoystick(boolean overridesJoystick) {
-        this.overridesJoystick = overridesJoystick;
-    };
+    /**
+     * Called when the key binded is released
+     */
+    public void onReleased() {};
 }

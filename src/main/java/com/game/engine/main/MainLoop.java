@@ -1,7 +1,7 @@
 package com.game.engine.main;
 
-import com.game.engine.controller.JoystickController;
-import com.game.engine.controller.KeyController;
+import com.game.engine.controller.ArcadeControllerBindingsManager;
+import com.game.engine.controller.InputController;
 
 public class MainLoop {
 	/** Frames per secons */
@@ -9,31 +9,45 @@ public class MainLoop {
 	/** The game physics */
 	public GamePhysics gamePhysics;
 	/** Keyboard controller */
-	public KeyController cKey;
-	/** Joystick controller */
-	public JoystickController cJoystick;
+	public InputController cKey;
+
+	public static boolean canRender = true;
 	/** Updates the fps 
 	 * @param fps
 	*/
 	public void setFPS(int fps) {
 		this.fps = fps;
 	}
+
+	public void addListeners() {
+		gamePhysics.display.addKeyListener(cKey);
+		gamePhysics.physicsEngine.world.c = InputController.c;
+		gamePhysics.display.requestFocusInWindow();
+	}
+
 	/** Runs the game loop */
 	public void start() throws Exception {
 
-		gamePhysics.display.addKeyListener(cKey);
-		
-		gamePhysics.physicsEngine.world.c = cKey.c;
-
 		long loopDuration = 1000000 / fps;
 
-		Thread.sleep(1000);
+		addListeners();
+
+		Thread.sleep(100);
+
 		gamePhysics.display.requestFocusInWindow();
 
 		long beforeTime = System.nanoTime();
 		
-		while (!KeyController.closeGame) {
-			cJoystick.checkForInput();
+		while (!InputController.closeGame) {
+			// Hacky fix, thanks to threads obscure magic
+			// Dont remove the sleep
+			// As it will break the whole damn game
+			// Let it sleep in peace
+			if(!canRender) {
+				Thread.sleep(1000);
+				continue;
+			}
+			ArcadeControllerBindingsManager.checkForInput();
 			gamePhysics.update();
 			gamePhysics.render();
 

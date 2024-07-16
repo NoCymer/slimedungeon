@@ -40,9 +40,9 @@ public class MapHudBackground extends HudElement{
         g.setColor(new Color(100, 100, 100, 0));
         try{
             new Sprite(
-                getX(),
-                getY(),
-                1,
+                getWidth(),
+                getHeight(),
+                1.5,
                 ImageIO.read(
                     new File("assets/misc/MenuBackground.png")
                 )

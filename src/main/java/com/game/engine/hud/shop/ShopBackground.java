@@ -31,7 +31,7 @@ public class ShopBackground extends HudElement{
             new Sprite(
                 getWidth(),
                 getHeight(),
-                1,
+                1.5,
                 ImageIO.read(
                     new File("assets/misc/MenuBackground.png")
                 )

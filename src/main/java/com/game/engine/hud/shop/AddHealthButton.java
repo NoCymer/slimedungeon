@@ -22,7 +22,7 @@ public class AddHealthButton extends Button {
      * @param width
      * @param height
     */
-    public AddHealthButton(Coords origin, Player player, int x, int y, int width, int height) throws IOException{
+    public AddHealthButton(Coords origin, Player player, int x, int y, int width, int height, String path) throws IOException{
         super(
             origin,
             new Sprite(
@@ -30,7 +30,7 @@ public class AddHealthButton extends Button {
                 y,
                 2,
                 ImageIO.read(
-                    new File("assets/misc/gem.png")
+                    new File(path)
                 )
                 
             ),
@@ -39,7 +39,7 @@ public class AddHealthButton extends Button {
                 y,
                 2,
                 ImageIO.read(
-                    new File("assets/misc/gem.png")
+                    new File(path)
                 )
                 
             ), x, y, width, height

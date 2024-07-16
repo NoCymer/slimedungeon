@@ -20,7 +20,7 @@ public class CloseButton extends Button {
      * @param width
      * @param height
     */
-    public CloseButton(Coords origin, Shop shop, int x, int y, int width, int height) throws IOException{
+    public CloseButton(Coords origin, Shop shop, int x, int y, int width, int height, String activePath, String path) throws IOException{
         super(
             origin,
             new Sprite(
@@ -28,7 +28,7 @@ public class CloseButton extends Button {
                 y,
                 2,
                 ImageIO.read(
-                    new File("assets/misc/Back.png")
+                    new File(path)
                 )
                 
             ),
@@ -37,7 +37,7 @@ public class CloseButton extends Button {
                 y,
                 2,
                 ImageIO.read(
-                    new File("assets/misc/Back_active.png")
+                    new File(activePath)
                 )
                 
             ), x, y, width, height

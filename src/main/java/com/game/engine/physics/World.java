@@ -5,18 +5,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.game.engine.controller.Control;
-import com.game.engine.controller.KeyController;
+import com.game.engine.controller.InputController;
 import com.game.engine.dialog.DialogController;
 import com.game.engine.generation.Map;
 import com.game.engine.hud.Hud;
 import com.game.engine.hud.map.MapHud;
 import com.game.engine.hud.shop.Shop;
+import com.game.engine.main.MainLoop;
 import com.game.engine.tiles.TileMap;
 import com.game.engine.trigger.TriggerMap;
 import com.game.engine.view.CoordinateSystem;
 
 /** World class */
 public class World {
+    /** MainLoop */
+    public MainLoop gameLoop;
 
     /** Controller */
     public Control c;
@@ -50,7 +53,7 @@ public class World {
      * @throws IOException
      */
     public World() throws IOException {
-        player = new Player(this, null, 0, 0, 100);
+        
     }
 
     /**
@@ -115,10 +118,10 @@ public class World {
 
     /** Updates the world */
     public void update() {
-        mapHud.setIsShown(KeyController.map);
-        if(KeyController.nextDialog && DialogController.getCurrentDialog() !=null && huds.get("npc").isShown()){
+        mapHud.setIsShown(InputController.map);
+        if(InputController.nextDialog && DialogController.getCurrentDialog() !=null && huds.get("npc").isShown()){
             DialogController.getCurrentDialog().nextLine();
-            KeyController.nextDialog = false;
+            InputController.nextDialog = false;
         }
         if(map.enemiesCount() == 0) {
             map.endRoom.unlockRoom();
@@ -145,5 +148,16 @@ public class World {
         player = new Player(this, map.activeRoom, px, py, gems);
         CoordinateSystem.h = player;
         player.index = 1;
+    }
+
+    public ArrayList<Entity> getAllActiveRoomEntities() {
+        ArrayList<Entity> all = new ArrayList<Entity>();
+
+        for (Enemy enemy : map.activeRoom.enemies) all.add(enemy);
+        for (Boss boss : map.activeRoom.bosses) all.add(boss);
+        for (NPC npc : map.activeRoom.npcs) all.add(npc);
+        all.add(player);
+
+        return all;
     }
 }

@@ -1,6 +1,6 @@
 package com.game.engine.shop;
 
-import com.game.engine.controller.KeyController;
+import com.game.engine.controller.InputController;
 import com.game.engine.hud.shop.Shop;
 import com.game.engine.physics.Player;
 
@@ -30,9 +30,13 @@ public class ShopManager {
      * @return False if the item wasn't bought
      */
     public boolean tryBuyItem(Player player, ShopItem item) {
+        System.out.println("here");
         if(player.getGems() >= item.getPrice() && item.canBeBoughtBy(player)) {
+            System.out.println("still here " + item.getPrice());
+            System.out.println("still here " + player.getGems());
             player.removeGems(item.getPrice());
             item.onBuy(player);
+            System.out.println("still here " + player.getGems());
             return true;
         }
         return false;
@@ -55,13 +59,13 @@ public class ShopManager {
         isShopOpened = true;
         shop.setIsShown(true);
         shop.setInteractable(true);
-        KeyController.canMove = false;
+        InputController.canMove = false;
     }
 
     public void closeShop() {
         isShopOpened = false;
         shop.setIsShown(false);
         shop.setInteractable(false);
-        KeyController.canMove = true;
+        InputController.canMove = true;
     }
 }

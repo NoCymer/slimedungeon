@@ -17,6 +17,8 @@ public class OpenShop extends HudElement{
     Sprite shopSprite;
     /** The shop */
     Shop shop;
+    /** Show string or not */
+    boolean showString;
     /** Constructs the shop button 
      * @param shop
      * @param x
@@ -24,13 +26,14 @@ public class OpenShop extends HudElement{
      * @param width
      * @param height
     */
-    public OpenShop(Coords origin, Shop shop, int x, int y, int width, int height) {
+    public OpenShop(Coords origin, Shop shop, int x, int y, int width, int height, String path, boolean showString) {
         super(origin, x, y, width, height);
         this.shop = shop;
+        this.showString = showString;
         try{
             shopSprite = new Sprite(16, 16, 2, ImageIO.read(
                 new File(
-                    "assets/misc/shop.png"
+                    path
                 )
             ));
         }
@@ -43,7 +46,7 @@ public class OpenShop extends HudElement{
         g.setFont(temp.deriveFont(Font.BOLD).deriveFont(20F));
 
         shopSprite.draw(g, getX(), getY());
-        g.drawString("Shop", getX() - shopSprite.getSizeX()*2, getY() + (int)(shopSprite.getSizeY()/1.3));
+        if(showString) g.drawString("Shop", getX() - shopSprite.getSizeX()*2, getY() + (int)(shopSprite.getSizeY()/1.3));
         g.setFont(temp);
     }
 

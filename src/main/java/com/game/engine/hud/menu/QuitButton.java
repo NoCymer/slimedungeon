@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import com.game.engine.controller.KeyController;
+import com.game.engine.controller.InputController;
 import com.game.engine.hud.Button;
 import com.game.engine.view.Coords;
 import com.game.engine.view.Sprite;
@@ -18,7 +18,7 @@ public class QuitButton extends Button {
      * @param width
      * @param height
     */
-    public QuitButton(Coords origin, int x, int y, int width, int height) throws IOException{
+    public QuitButton(Coords origin, int x, int y, int width, int height, String imgUrl, String umgActiveUrl) throws IOException{
         super(
             origin,
             new Sprite(
@@ -26,7 +26,7 @@ public class QuitButton extends Button {
                 y,
                 2,
                 ImageIO.read(
-                    new File("assets/misc/Exit.png")
+                    new File(imgUrl)
                 )
                 
             ),
@@ -35,7 +35,7 @@ public class QuitButton extends Button {
                 y,
                 2,
                 ImageIO.read(
-                    new File("assets/misc/Exit_active.png")
+                    new File(umgActiveUrl)
                 )
                 
             ), x, y, width, height
@@ -44,6 +44,6 @@ public class QuitButton extends Button {
 
     @Override
     public void onClick() {
-        KeyController.closeGame = true;
+        InputController.closeGame = true;
     }
 }

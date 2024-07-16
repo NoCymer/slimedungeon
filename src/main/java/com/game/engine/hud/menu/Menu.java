@@ -11,9 +11,9 @@ public class Menu extends Hud{
 	/** Background of the menu */
 	MenuBackground menuBackground;
 	/** Start button */
-	StartButton startButton;
+	StartButton startButton, startButtonHint;
 	/** Quit button */
-	QuitButton quitButton;
+	QuitButton quitButton, quitButtonHint;
 	/** Constructs a menu 
 	 * @param display
 	 * @param pHud
@@ -28,12 +28,18 @@ public class Menu extends Hud{
 		Coords origin = new Coords(x, y);
 		try{
 			menuBackground = new MenuBackground(origin,x, y, width, height);
-			startButton = new StartButton(origin,this, width/2 - 32, 120, 64,50 );
-			quitButton = new QuitButton(origin,width/2 - 32, 50, 64, 50);
+            quitButton = new QuitButton(origin,width/2 - 32, 50, 64, 50, "assets/misc/Exit.png", "assets/misc/Exit_active.png");
+            quitButtonHint = new QuitButton(origin,width/2 - 32 + 80, 50, 64, 50, "assets/misc/ArcadeController5.png", "assets/misc/ArcadeController5.png");
+            
+            startButton = new StartButton(origin,this,width/2 - 32, 120, 64, 50, "assets/misc/Play.png", "assets/misc/Play_active.png");
+            startButtonHint = new StartButton(origin,this,width/2 - 32 + 80, 120, 64, 50, "assets/misc/ArcadeController6.png", "assets/misc/ArcadeController6.png");
+            
 
 			addElement(menuBackground);
-            addElement(startButton);
             addElement(quitButton);
+            addElement(quitButtonHint);
+            addElement(startButton);
+            addElement(startButtonHint);
 		}
 		catch(Exception e) {}
 	}

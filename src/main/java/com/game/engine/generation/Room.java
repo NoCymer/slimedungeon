@@ -28,7 +28,7 @@ public class Room extends Scene{
     private HashMap<Directions,Room> neighboringRooms = new HashMap<Directions,Room>();
 
     /** Count of all existing rooms */
-    private static int count = 0;
+    public static int count = 0;
 
     /** Id of the room */
     private int id;    

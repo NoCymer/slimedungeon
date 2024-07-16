@@ -38,8 +38,8 @@ public class EnemyAI {
     public void update() {
         if(enemy.room != enemy.world.map.activeRoom) return;
         double[] newSpeed = moveTowards(enemy.px, enemy.py, enemy.world.player.px, enemy.world.player.py);
-        enemy.vx = newSpeed[0];
-        enemy.vy = newSpeed[1];
+        enemy.vx = newSpeed[0] * 1.5;
+        enemy.vy = newSpeed[1] * 1.5;
         if(enemy.isInTriggerZone(enemy.world.player,attackZone) && canAttack) {
             canAttack = false;
             enemy.attack(enemy.world.player);

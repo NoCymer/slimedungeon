@@ -48,6 +48,7 @@ public class Sprite {
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(image, at, null);
     }
+
     /** Returns the buffered image 
      * @return
     */

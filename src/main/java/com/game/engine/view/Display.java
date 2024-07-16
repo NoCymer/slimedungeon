@@ -36,11 +36,21 @@ public class Display extends JPanel {
 		f.setResizable(false);
 		f.setUndecorated(true);
 		this.setPreferredSize(new Dimension(map.size() + 200,map.size() + 200));
-		f.getContentPane().add(this);
+		f.add(this, BorderLayout.CENTER);
 
-		f.pack();
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+		GraphicsDevice device = GraphicsEnvironment
+        .getLocalGraphicsEnvironment().getScreenDevices()[0];
+
+		f.setMinimumSize(screenSize); 
+		f.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		
+		device.setFullScreenWindow(f);
+
 		f.setLocationRelativeTo(null);
 		f.setVisible(true);
+		
 		
 		f.setIgnoreRepaint(true);
 

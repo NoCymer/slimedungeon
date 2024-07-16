@@ -27,7 +27,7 @@ public class DialogDisplay extends HudElement{
             new Sprite(
                 getX(),
                 getY(),
-                1,
+                1.5,
                 ImageIO.read(
                     new File("assets/misc/text_bg.png")
                 )

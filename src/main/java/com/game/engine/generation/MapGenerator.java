@@ -15,6 +15,8 @@ import com.game.engine.view.Coords;
 
 /** MapGenerator class */
 public class MapGenerator {
+    public static final int TILE_SIZE = 16;
+    public static final int TILE_SCALE_FACTOR = 3;
     public static int[][] tm;
     /** Constructs a MapGenerator */
     public MapGenerator() {}
@@ -25,10 +27,10 @@ public class MapGenerator {
     private static TileMap generateTileMap(Room r) {
         Atlas atlas = new Atlas(
             "assets/tiles/tilemap_exp.png",
-            16,
+            TILE_SIZE,
             8,
             8,
-			2
+			TILE_SCALE_FACTOR
         );
 
         tm = new int[][] {
@@ -114,8 +116,8 @@ public class MapGenerator {
         }
 
         TileMap tileMap = new TileMap(
-            16,
-            2,
+            TILE_SIZE,
+            TILE_SCALE_FACTOR,
             tm,
             atlas
         );
@@ -157,7 +159,7 @@ public class MapGenerator {
                         0,
                         map.endRoom.getTileMap().size()/2,
                         map.endRoom.getTileMap().size()/2,
-                        20
+                        10
                     );
                 }
                 catch(Exception e){}

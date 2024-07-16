@@ -20,7 +20,7 @@ public class HealButton extends Button {
      * @param width
      * @param height
     */
-    public HealButton(Coords origin, Player player, int x, int y, int width, int height) throws IOException{
+    public HealButton(Coords origin, Player player, int x, int y, int width, int height, String path) throws IOException{
         super(
             origin,
             new Sprite(
@@ -28,7 +28,7 @@ public class HealButton extends Button {
                 y,
                 2,
                 ImageIO.read(
-                    new File("assets/misc/HealthVial.png")
+                    new File(path)
                 )
                 
             ),
@@ -37,7 +37,7 @@ public class HealButton extends Button {
                 y,
                 2,
                 ImageIO.read(
-                    new File("assets/misc/HealthVial.png")
+                    new File(path)
                 )
                 
             ), x, y, width, height

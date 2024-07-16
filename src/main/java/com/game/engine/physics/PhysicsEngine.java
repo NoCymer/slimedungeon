@@ -2,6 +2,7 @@ package com.game.engine.physics;
 
 import java.util.ArrayList;
 
+import com.game.engine.generation.MapGenerator;
 import com.game.engine.generation.Room;
 import com.game.engine.tiles.GridCell;
 import com.game.engine.trigger.TriggerMap;
@@ -37,8 +38,8 @@ public class PhysicsEngine {
 			}
 
 			// Apply input
-			world.player.vx = world.c.x * 1.5;
-			world.player.vy = -world.c.y * 1.5;
+			world.player.vx = world.c.x * 2;
+			world.player.vy = -world.c.y * 2;
 
 			// Intertia x
 			if (world.c.x == 0) { 
@@ -97,43 +98,30 @@ public class PhysicsEngine {
 			}
 			world.player.update();
 	
+			int tileCellSize = (MapGenerator.TILE_SIZE*MapGenerator.TILE_SCALE_FACTOR);
+
 			/** Checks for collision with the world border */
-			if(world.player.px+world.player.width+32 > world.getWorldBorder().width+64) {
-				world.player.px = world.getWorldBorder().width-world.player.width-2+32 ;
-				world.player.vx = world.player.vx * -0.9;
-			}
-			if(world.player.px <= 32) {
-				world.player.px = 32+2;
-				world.player.vx = world.player.vx * -0.9;
-			}
-			if(world.player.py+world.player.height > world.getWorldBorder().height+32) {
-				world.player.py = world.getWorldBorder().height-world.player.height-2+32 ;
-				world.player.vy = world.player.vy * -0.9;
-			}
-			if(world.player.py <= 32) {
-				world.player.py = 32+2;
-				world.player.vy = world.player.vy * -0.9;
+			for(Entity entity : world.getAllActiveRoomEntities()) {
+				if(entity.px+entity.width+32 > world.getWorldBorder().width+tileCellSize) {
+					entity.px = world.getWorldBorder().width-entity.width-2 + tileCellSize/3 ;
+					entity.vx = entity.vx * -0.9;
+				}
+				if(entity.px <= tileCellSize) {
+					entity.px = tileCellSize+2;
+					entity.vx = entity.vx * -0.9;
+				}
+				if(entity.py+entity.height > world.getWorldBorder().height+tileCellSize/2) {
+					entity.py = world.getWorldBorder().height-entity.height-2+tileCellSize/2 ;
+					entity.vy = entity.vy * -0.9;
+				}
+				if(entity.py <= tileCellSize) {
+					entity.py = tileCellSize+2;
+					entity.vy = entity.vy * -0.9;
+				}
 			}
 	
-			/** Checks for collision with the enemies and the world border */
+			// Enemy activity
 			for (Enemy enemy : world.map.activeRoom.enemies) {
-				if(enemy.px+enemy.width+32  > world.getWorldBorder().width+64) {
-					enemy.px = world.getWorldBorder().width-enemy.width-2+32;
-					enemy.vx = enemy.vx * -0.9;
-				}
-				if(enemy.px <= 32) {
-					enemy.px = 32+2;
-					enemy.vx = enemy.vx * -0.9;
-				}
-				if(enemy.py+enemy.height > world.getWorldBorder().height+32) {
-					enemy.py = world.getWorldBorder().height-enemy.height-2+32;
-					enemy.vy = enemy.vy * -0.9;
-				}
-				if(enemy.py <= 32) {
-					enemy.py = 32+2;
-					enemy.vy = enemy.vy * -0.9;
-				}
-	
 				if (enemy.vx > 0) {
 					if (enemy.vy > 0.5) {
 						enemy.sprite.changeActivity("up-right");
@@ -156,26 +144,9 @@ public class PhysicsEngine {
 					enemy.sprite.changeActivity("down");
 				}
 			}
-			/** Checks for collision with the bosses and the world border */
+			
+			// Boss activity
 			for (Boss boss : world.map.activeRoom.bosses) {
-				if(boss.px+boss.width+32 > world.getWorldBorder().width+64) {
-					boss.px = world.getWorldBorder().width-boss.width-2+32;
-					boss.vx = boss.vx * -0.9;
-				}
-				if(boss.px <= 32) {
-					boss.px = 32+2;
-					boss.vx = boss.vx * -0.9;
-				}
-				if(boss.py+boss.height > world.getWorldBorder().height+32) {
-					boss.py = world.getWorldBorder().height-boss.height-2+32;
-					boss.vy = boss.vy * -0.9;
-				}
-				if(boss.py <= 32) {
-					boss.py = 32+2;
-					boss.vy = boss.vy * -0.9;
-				}
-	
-				// Boss activity
 				if (boss.vx > 0) {
 					if (boss.vy > 0.5) {
 						boss.sprite.changeActivity("up-right");
@@ -210,13 +181,13 @@ public class PhysicsEngine {
 					enemy.py = enemy.py + (col.correctionValue * Math.sin(col.collisionAngle));
 				}
 				
-			/** Checks for collision with the enemies and the enemy */
+				/** Checks for collision with the enemies and the enemy */
 				for (Enemy enemy1 : world.map.activeRoom.enemies) {
 					Collision col1 = Collision.collision(enemy, enemy1);
 					if (!enemy.equals(enemy1) && Collision.collision(enemy, enemy1) != null) {
 						enemy.px = enemy.px + (col1.correctionValue * Math.cos(col1.collisionAngle));
 						enemy.py = enemy.py + (col1.correctionValue * Math.sin(col1.collisionAngle));
-	
+
 						enemy1.px = enemy1.px - (col1.correctionValue * Math.cos(col1.collisionAngle));
 						enemy1.py = enemy1.py - (col1.correctionValue * Math.sin(col1.collisionAngle));
 					}

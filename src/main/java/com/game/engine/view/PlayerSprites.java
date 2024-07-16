@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.io.IOException;
 import java.util.HashMap;
 
+import com.game.engine.generation.MapGenerator;
 import com.game.engine.physics.Player;
 import com.game.engine.tiles.Atlas;
 
@@ -22,7 +23,7 @@ public class PlayerSprites extends Sprites {
 	 */
 	public PlayerSprites(Player b) throws IOException {
 		this.player = b;
-		spriteAtlas = new Atlas(imageFile, 16, 4, 2, 2);
+		spriteAtlas = new Atlas(imageFile, MapGenerator.TILE_SIZE, 4, 2, MapGenerator.TILE_SCALE_FACTOR);
 		activity = "down";
 		sprites = new HashMap<String, Sprite>();
 		sprites.put("fixe", spriteAtlas.get(1));

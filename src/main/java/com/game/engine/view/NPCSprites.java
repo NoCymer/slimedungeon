@@ -3,6 +3,7 @@ package com.game.engine.view;
 import java.io.IOException;
 import java.util.HashMap;
 
+import com.game.engine.generation.MapGenerator;
 import com.game.engine.physics.NPC;
 import com.game.engine.tiles.Atlas;
 /** NPCSSprites class */
@@ -21,7 +22,7 @@ public class NPCSprites extends Sprites {
 	 */
 	public NPCSprites(NPC b) throws IOException {
 		this.npc = b;
-		spriteAtlas = new Atlas(imageFile, 16, 8, 15, 2);
+		spriteAtlas = new Atlas(imageFile, MapGenerator.TILE_SIZE, 8, 15, MapGenerator.TILE_SCALE_FACTOR);
 		activity = "down";
 		sprites = new HashMap<String, Sprite>();
 		sprites.put("fixe0", spriteAtlas.get(1));

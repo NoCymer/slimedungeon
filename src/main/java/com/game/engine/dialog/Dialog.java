@@ -76,7 +76,7 @@ public class Dialog {
         ArrayList<String> line = getLine(currentLine);
         for(int i = 1; i <= line.size(); i++) {
             Font temp = g.getFont();
-            g.setFont(new Font(temp.getFontName(), Font.BOLD, temp.getSize()));
+            g.setFont(new Font(temp.getFontName(), Font.BOLD, (int)(temp.getSize()*1.5)));
             g.drawString(line.get(i-1), 25+x, 25+y+g.getFont().getSize()*i);
             g.setFont(temp);
         }
